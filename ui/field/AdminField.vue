@@ -39,7 +39,7 @@ export default {
 
   data () {
     return {
-      selected: null
+      selected: false
     }
   },
 
