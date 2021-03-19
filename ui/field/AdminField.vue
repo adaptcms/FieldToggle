@@ -11,7 +11,7 @@ import Toggle from '@/Adaptcms/Base/ui/components/Form/Toggle'
 
 export default {
   props: [
-    'value',
+    'modelValue',
     'field',
     'errors',
     'formMeta',
@@ -19,20 +19,24 @@ export default {
     'action'
   ],
 
+  emits: [
+    'update:modelValue'
+  ],
+
   components: {
     Toggle
   },
 
   watch: {
-    value (newVal, oldVal) {
-      if (newVal !== oldVal) {
+    modelValue (newVal, oldVal) {
+      if (newVal !== 0 && newVal !== oldVal) {
         this.selected = newVal
       }
     },
 
     selected (newVal, oldVal) {
       if (newVal !== oldVal) {
-        this.$emit('input', newVal)
+        this.$emit('update:modelValue', newVal)
       }
     }
   },
@@ -44,9 +48,7 @@ export default {
   },
 
   mounted () {
-    if (this.value) {
-      this.selected = this.value
-    }
+    this.selected = this.modelValue
   }
 }
 </script>
